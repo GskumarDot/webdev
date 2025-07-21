@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Downloaded Images</title>
+  <style>
+    .grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .grid-item {
+      flex: 1 1 calc(33.333% - 20px);
+      box-sizing: border-box;
+      text-align: center;
+    }
+    img {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <h2>Downloaded Images</h2>
+  <div class="grid">
+    {% for img in images %}
+      <div class="grid-item">
+        <img src="{{ url_for('serve_temp_file', filename=img) }}">
+        <br>
+        <a href="{{ url_for('serve_temp_file', filename=img) }}" download>Download</a>
+      </div>
+    {% endfor %}
+  </div>
+</body>
+</html>
